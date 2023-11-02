@@ -12,6 +12,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
 from preprocessing import preprocess_data
 
+preprocess_data(data, test_data, train_data)
 
 # Chargement des données prétraitées
 train_data = pd.read_csv("data/Train_Data.csv")
@@ -28,53 +29,53 @@ with prevision_df_tab:
     # Créer une application Streamlit
     st.title("Tableau de bord Prévision")
 
-    # Créer le modèle Random Forest
-    clf = RandomForestClassifier(n_jobs=-1,class_weight='balanced')  
+    # # Créer le modèle Random Forest
+    # clf = RandomForestClassifier(n_jobs=-1,class_weight='balanced', warm_start=True) 
 
-    # Entraîner le modèle
-    clf.fit(X_train, y_train)
+    # # Entraîner le modèle
+    # clf.fit(X_train, y_train)
 
-    # Prédire la satisfaction client
-    def predict_satisfaction(features):
-        prediction = clf.predict(features)
-        return prediction
+    # # Prédire la satisfaction client
+    # def predict_satisfaction(features):
+    #     prediction = clf.predict(features)
+    #     return prediction
 
-    # Interface utilisateur avec Streamlit
-    st.title("Prédiction de la satisfaction client")
-    st.write("Entrez les caractéristiques du client pour prédire sa satisfaction.")
+    # # Interface utilisateur avec Streamlit
+    # st.title("Prédiction de la satisfaction client")
+    # st.write("Entrez les caractéristiques du client pour prédire sa satisfaction.")
 
-    # Entrée des caractéristiques du client
-    feature1 = st.slider("Caractéristique 1", min_value=0, max_value=10)
-    feature2 = st.slider("Caractéristique 2", min_value=0, max_value=10)
-    feature3 = st.slider("Caractéristique 3", min_value=0, max_value=10)
-    feature4 = st.slider("Caractéristique 4", min_value=0, max_value=10)
-    feature5 = st.slider("Caractéristique 5", min_value=0, max_value=10)
-    feature6 = st.slider("Caractéristique 6", min_value=0, max_value=10)
-    feature7 = st.slider("Caractéristique 7", min_value=0, max_value=10)
-    feature8 = st.slider("Caractéristique 8", min_value=0, max_value=10)
-    feature9 = st.slider("Caractéristique 9", min_value=0, max_value=10)
-    feature10 = st.slider("Caractéristique 10", min_value=0, max_value=10)
-    feature11 = st.slider("Caractéristique 11", min_value=0, max_value=10)
-    feature12 = st.slider("Caractéristique 12", min_value=0, max_value=10)
-    feature13 = st.radio("Caractéristique 13", ["Oui", "Non"])
-    feature14 = st.radio("Caractéristique 14", ["Oui", "Non"])
-    feature15 = st.radio("Caractéristique 15", ["Oui", "Non"])
-    feature16 = st.radio("Caractéristique 16", ["Oui", "Non"])
-    feature17 = st.radio("Caractéristique 17", ["Oui", "Non"])
-    feature18 = st.radio("Caractéristique 18", ["Oui", "Non"])
-    feature19 = st.radio("Caractéristique 19", ["Oui", "Non"])
-    feature20 = st.radio("Caractéristique 20", ["Oui", "Non"])
-    feature21 = st.radio("Caractéristique 21", ["Oui", "Non"])
-    feature22 = st.radio("Caractéristique 22", ["Oui", "Non"])
-    feature23 = st.radio("Caractéristique 23", ["Oui", "Non"])
-    feature24 = st.radio("Caractéristique 24", ["Oui", "Non"])
+    # # Entrée des caractéristiques du client
+    # feature1 = st.slider("Caractéristique 1", min_value=0, max_value=10)
+    # feature2 = st.slider("Caractéristique 2", min_value=0, max_value=10)
+    # feature3 = st.slider("Caractéristique 3", min_value=0, max_value=10)
+    # feature4 = st.slider("Caractéristique 4", min_value=0, max_value=10)
+    # feature5 = st.slider("Caractéristique 5", min_value=0, max_value=10)
+    # feature6 = st.slider("Caractéristique 6", min_value=0, max_value=10)
+    # feature7 = st.slider("Caractéristique 7", min_value=0, max_value=10)
+    # feature8 = st.slider("Caractéristique 8", min_value=0, max_value=10)
+    # feature9 = st.slider("Caractéristique 9", min_value=0, max_value=10)
+    # feature10 = st.slider("Caractéristique 10", min_value=0, max_value=10)
+    # feature11 = st.slider("Caractéristique 11", min_value=0, max_value=10)
+    # feature12 = st.slider("Caractéristique 12", min_value=0, max_value=10)
+    # feature13 = st.radio("Caractéristique 13", ["Oui", "Non"])
+    # feature14 = st.radio("Caractéristique 14", ["Oui", "Non"])
+    # feature15 = st.radio("Caractéristique 15", ["Oui", "Non"])
+    # feature16 = st.radio("Caractéristique 16", ["Oui", "Non"])
+    # feature17 = st.radio("Caractéristique 17", ["Oui", "Non"])
+    # feature18 = st.radio("Caractéristique 18", ["Oui", "Non"])
+    # feature19 = st.radio("Caractéristique 19", ["Oui", "Non"])
+    # feature20 = st.radio("Caractéristique 20", ["Oui", "Non"])
+    # feature21 = st.radio("Caractéristique 21", ["Oui", "Non"])
+    # feature22 = st.radio("Caractéristique 22", ["Oui", "Non"])
+    # feature23 = st.radio("Caractéristique 23", ["Oui", "Non"])
+    # feature24 = st.radio("Caractéristique 24", ["Oui", "Non"])
 
-    # Prédire la satisfaction client
-    features = [[feature1, feature2, feature3, feature4, feature5, feature6, feature7, feature8, feature9, feature10, feature11, feature12, feature13, feature14, feature15, feature16, feature17, feature18, feature19, feature20, feature21, feature22, feature23, feature24]]
-    prediction = predict_satisfaction(features)
+    # # Prédire la satisfaction client
+    # features = [[feature1, feature2, feature3, feature4, feature5, feature6, feature7, feature8, feature9, feature10, feature11, feature12, feature13, feature14, feature15, feature16, feature17, feature18, feature19, feature20, feature21, feature22, feature23, feature24]]
+    # prediction = predict_satisfaction(features)
 
-    # Afficher la prédiction
-    st.write("La satisfaction client prédite est :", prediction)
+    # # Afficher la prédiction
+    # st.write("La satisfaction client prédite est :", prediction)
 
 
 with apprentissage_df_tab:
@@ -82,7 +83,7 @@ with apprentissage_df_tab:
     st.title("Tableau de bord pour l'apprentissage automatique")
 
     # Création et entraînement du modèle
-    clf = RandomForestClassifier(n_jobs=-1,class_weight='balanced')  
+    clf = RandomForestClassifier(n_jobs=-1,class_weight='balanced', warm_start=True)  
     clf.fit(X_train, y_train)
 
     # Prédiction sur l'ensemble de test
@@ -129,17 +130,13 @@ with dashboard_test_tab:
         file = st.file_uploader("Téléchargez un fichier CSV", type=["csv"])
         if file is not None:
             data = pd.read_csv(file)
-            result = preprocess_data(data,test_data, train_data)
-            # X_train = result.
-            # X_test = result.test_data
-            # y_train = Preprocessing.y_train
-            # y_test = Preprocessing.y_test
-            # Affichez les données du fichier CSV
-            r
+            result = preprocess_data(data, test_data, train_data)
+            
+            # Afficher les données du fichier CSV
             st.dataframe(data)
-            if st.button("Lancer le modèle") :
+            if st.button("Lancer le modèle",type="primary") :
                 # Création et entraînement du modèle
-                clf = RandomForestClassifier(n_jobs=-1,class_weight='balanced')  
+                clf = RandomForestClassifier(n_jobs=-1,class_weight='balanced', warm_start=True)  
                 clf.fit(X_train, y_train)
                 # Prédiction sur l'ensemble de test
                 y_pred = clf.predict(X_test)
@@ -166,15 +163,12 @@ with dashboard_test_tab:
         file = st.file_uploader("Téléchargez un fichier Excel", type=["xlsx"])
         if file is not None:
             data = pd.read_excel(file)
-            # Division des données en ensembles d'entraînement et de test
-            Preprocessing(data)
-            X_train, X_test, y_train, y_test = Preprocessing(X_train, X_test, y_train, y_test)
-
-            # Affichez les données du fichier Excel
+            result = preprocess_data(data, test_data, train_data)
+            # Afficher les données du fichier Excel
             st.dataframe(data)
-            if st.button("Lancer le modèle") :
+            if st.button("Lancer le modèle",type="primary") :
                 # Création et entraînement du modèle
-                clf = RandomForestClassifier(n_jobs=-1,class_weight='balanced')  
+                clf = RandomForestClassifier(n_jobs=-1,class_weight='balanced', warm_start=True)  
                 clf.fit(X_train, y_train)
                 # Prédiction sur l'ensemble de test
                 y_pred = clf.predict(X_test)
@@ -196,21 +190,16 @@ with dashboard_test_tab:
     # Onglet "Fichier JSON"
     elif onglet_selectionne == "Fichier JSON":
         st.header("Lecture de données depuis un fichier JSON")
-
         # Chargement des données depuis un fichier JSON
         file = st.file_uploader("Téléchargez un fichier JSON", type=["json"])
         if file is not None:
             data = json.load(file)
-            # Division des données en ensembles d'entraînement et de test
-            X = data.drop("Satisfaction", axis=1)
-            y = data["Satisfaction"]
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
+            result = preprocess_data(data, test_data, train_data)
             # Affichez les données du fichier JSON
             st.json(data)
-            if st.button("Lancer le modèle") :
+            if st.button("Lancer le modèle",type="primary") :
                 # Création et entraînement du modèle
-                clf = RandomForestClassifier(n_jobs=-1,class_weight='balanced')  
+                clf = RandomForestClassifier(n_jobs=-1,class_weight='balanced', warm_start=True)  
                 clf.fit(X_train, y_train)
                 # Prédiction sur l'ensemble de test
                 y_pred = clf.predict(X_test)
