@@ -10,7 +10,7 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
-from preprocessing import Preprocessing
+from preprocessing import preprocess_data
 
 
 # Chargement des données prétraitées
@@ -104,12 +104,13 @@ with dashboard_test_tab:
         file = st.file_uploader("Téléchargez un fichier CSV", type=["csv"])
         if file is not None:
             data = pd.read_csv(file)
-            result = Preprocessing(data)
-            X_train = result.train_data
-            X_test = result.test_data
-            y_train = Preprocessing.y_train
-            y_test = Preprocessing.y_test
+            result = preprocess_data(data,test_data, train_data)
+            # X_train = result.
+            # X_test = result.test_data
+            # y_train = Preprocessing.y_train
+            # y_test = Preprocessing.y_test
             # Affichez les données du fichier CSV
+            r
             st.dataframe(data)
             if st.button("Lancer le modèle") :
                 # Création et entraînement du modèle
