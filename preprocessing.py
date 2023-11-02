@@ -10,7 +10,7 @@ def Preprocessing(data) :
     # Prétraitement des données pour extraire les colonnes pertinentes
     data.drop(["id"], axis=1, inplace=True)
     data['Gender'] = np.where(data['Gender']=='Male',1,0)
-    data.drop['Customer Type'] = np.where(data['Customer Type']=='Loyal Customer',1,0)
+    data['Customer Type'] = np.where(data['Customer Type']=='Loyal Customer',1,0)
     # data['Customer Type'] = np.where(data['Customer Type']=='Loyal Customer',1,0)
     data['Type of Travel'] = np.where(data['Type of Travel']=='Business travel',1,0)
     data['Satisfaction'] = np.where(data['Satisfaction']=='satisfied',1,0)
