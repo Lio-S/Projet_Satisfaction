@@ -1,7 +1,7 @@
 
 def create_db_tables():
     from sqlalchemy_utils import database_exists, drop_database, create_database #importer package nécessaire
-    from Components.models import Base, Genders, Customer_types, Type_of_travel, Classes, Satisfaction, Traveler
+    from components.models import Base, Genders, Customer_types, Type_of_travel, Classes, Satisfaction, Traveler
     from sqlalchemy import create_engine
 # Définir l'URL de la base de données
     db_url = "sqlite:///BDD_sqlite/Airline_Dataset_db.sqlite"
