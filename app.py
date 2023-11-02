@@ -45,7 +45,7 @@ with prevision_df_tab:
     # st.write("Entrez les caractéristiques du client pour prédire sa satisfaction.")
 
     # # Entrée des caractéristiques du client
-    # feature1 = st.slider("Caractéristique 1", min_value=0, max_value=10)
+    feature1 = st.slider("deley", min_value=0, max_value=10)
     # feature2 = st.slider("Caractéristique 2", min_value=0, max_value=10)
     # feature3 = st.slider("Caractéristique 3", min_value=0, max_value=10)
     # feature4 = st.slider("Caractéristique 4", min_value=0, max_value=10)
