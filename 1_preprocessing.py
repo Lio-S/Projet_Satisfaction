@@ -1,9 +1,10 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import numpy as np
+from sklearn.preprocessing import LabelEncoder
 
 # Chargement des données depuis le fichier CSV
-data = pd.read_csv("choix du modèle/Airline_Dataset.csv")
+data = pd.read_csv("data/Airline_Dataset.csv")
 
 # Prétraitement des données pour extraire les colonnes pertinentes
 data.drop(["id"], axis=1, inplace=True)
