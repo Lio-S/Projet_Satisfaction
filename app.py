@@ -22,34 +22,59 @@ y_train = train_data["Satisfaction"]
 y_test = test_data["Satisfaction"]
 
 
-# X = pd.DataFrame(train_data, columns=train_data.feature_names)
-# y = pd.DataFrame(train_data)
-
-# # Ajout de nouvelles données
-# new_data = pd.DataFrame({"Flight Distance": [500], "Inflight wifi service": [4], "Seat comfort": [3], "Inflight entertainment": [5]})
-# data = pd.concat([data, new_data], ignore_index=True)
-# data.to_csv("Mon_Projet/data/Preprocessed_Airline_Dataset.csv", index=False)
-
-# Gestion des onglets
-# tabs = st.sidebar.radio("Sélectionnez un onglet :", ("Prévision", "Apprentissage", "Test et ajout données",))
-
-# if tabs == "Prévision":
-#     st.header("Prévision")
-#     st.write("Contenu de l'onglet 1")
-
-# elif tabs == "Apprentissage":
-#     st.header("Apprentissage")
-#     st.write("Contenu de l'onglet 2")
-
-# elif tabs == "Test et ajout données":
-#     st.header("Onglet 3")
-#     st.write("Test et ajout données")
 prevision_df_tab, apprentissage_df_tab, dashboard_test_tab = st.tabs(['Prévision', 'Apprentissage', 'Test et ajout données'])
 
 with prevision_df_tab:
-    # Créez une application Streamlit
+    # Créer une application Streamlit
     st.title("Tableau de bord Prévision")
 
+    # Créer le modèle Random Forest
+    clf = RandomForestClassifier(n_jobs=-1,class_weight='balanced')  
+
+    # Entraîner le modèle
+    clf.fit(X_train, y_train)
+
+    # Prédire la satisfaction client
+    def predict_satisfaction(features):
+        prediction = clf.predict(features)
+        return prediction
+
+    # Interface utilisateur avec Streamlit
+    st.title("Prédiction de la satisfaction client")
+    st.write("Entrez les caractéristiques du client pour prédire sa satisfaction.")
+
+    # Entrée des caractéristiques du client
+    feature1 = st.slider("Caractéristique 1", min_value=0, max_value=10)
+    feature2 = st.slider("Caractéristique 2", min_value=0, max_value=10)
+    feature3 = st.slider("Caractéristique 3", min_value=0, max_value=10)
+    feature4 = st.slider("Caractéristique 4", min_value=0, max_value=10)
+    feature5 = st.slider("Caractéristique 5", min_value=0, max_value=10)
+    feature6 = st.slider("Caractéristique 6", min_value=0, max_value=10)
+    feature7 = st.slider("Caractéristique 7", min_value=0, max_value=10)
+    feature8 = st.slider("Caractéristique 8", min_value=0, max_value=10)
+    feature9 = st.slider("Caractéristique 9", min_value=0, max_value=10)
+    feature10 = st.slider("Caractéristique 10", min_value=0, max_value=10)
+    feature11 = st.slider("Caractéristique 11", min_value=0, max_value=10)
+    feature12 = st.slider("Caractéristique 12", min_value=0, max_value=10)
+    feature13 = st.radio("Caractéristique 13", ["Oui", "Non"])
+    feature14 = st.radio("Caractéristique 14", ["Oui", "Non"])
+    feature15 = st.radio("Caractéristique 15", ["Oui", "Non"])
+    feature16 = st.radio("Caractéristique 16", ["Oui", "Non"])
+    feature17 = st.radio("Caractéristique 17", ["Oui", "Non"])
+    feature18 = st.radio("Caractéristique 18", ["Oui", "Non"])
+    feature19 = st.radio("Caractéristique 19", ["Oui", "Non"])
+    feature20 = st.radio("Caractéristique 20", ["Oui", "Non"])
+    feature21 = st.radio("Caractéristique 21", ["Oui", "Non"])
+    feature22 = st.radio("Caractéristique 22", ["Oui", "Non"])
+    feature23 = st.radio("Caractéristique 23", ["Oui", "Non"])
+    feature24 = st.radio("Caractéristique 24", ["Oui", "Non"])
+
+    # Prédire la satisfaction client
+    features = [[feature1, feature2, feature3, feature4, feature5, feature6, feature7, feature8, feature9, feature10, feature11, feature12, feature13, feature14, feature15, feature16, feature17, feature18, feature19, feature20, feature21, feature22, feature23, feature24]]
+    prediction = predict_satisfaction(features)
+
+    # Afficher la prédiction
+    st.write("La satisfaction client prédite est :", prediction)
 
 
 with apprentissage_df_tab:
