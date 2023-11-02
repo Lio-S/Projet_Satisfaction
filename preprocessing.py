@@ -64,7 +64,7 @@ def preprocess_data(data, test_data, train_data):
     data = data.rename(columns={'Seat comfort': 'seat_comfort'})
     data = data.rename(columns={'Inflight entertainment': 'inflight_entertainmt'})
     data = data.rename(columns={'Leg room service': 'leg_room_service'})
-    data = data.rename(columns={'On-board service': 'On-board service'})
+    data = data.rename(columns={'On-board service': 'on_board_service'})
 
     # Save the preprocessed data into a CSV file
     data.to_csv("choix du modèle/Preprocessed_Airline_Dataset.csv", index=False)
@@ -78,12 +78,12 @@ def preprocess_data(data, test_data, train_data):
     train_data = pd.concat([X_train, y_train], axis=1)
     test_data = pd.concat([X_test, y_test], axis=1)
 
-# data['Arrival Delay in Minutes'] = np.where(data['Arrival Delay in Minutes'].isna(),1,0)
-# data.dropna(inplace=True)
+    # data['Arrival Delay in Minutes'] = np.where(data['Arrival Delay in Minutes'].isna(),1,0)
+    # data.dropna(inplace=True)
 
-# selected_columns = ["Satisfaction", "Flight Distance", "Inflight wifi service", "Seat comfort", "Inflight entertainment","Type of Travel","Class","Online boarding", "On-board service", "Leg room service", "Customer Type"]
-# data = data[selected_columns]
-# print("isna :",data.isna().sum())
+    # selected_columns = ["Satisfaction", "Flight Distance", "Inflight wifi service", "Seat comfort", "Inflight entertainment","Type of Travel","Class","Online boarding", "On-board service", "Leg room service", "Customer Type"]
+    # data = data[selected_columns]
+    # print("isna :",data.isna().sum())
     # print("null :",data.isnull().sum())
     test_data.to_csv("data/Test_Data.csv", index=False)
     train_data.to_csv("data/Train_Data.csv", index=False)

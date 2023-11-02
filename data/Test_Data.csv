@@ -1,4 +1,4 @@
-delay,eco,eco_plus,business,gender,customer_type,ToT,flight_distance,iwservice,da_time_convenient,ease_online_booking,gate_location,food_and_drink,online_boarding,seat_comfort,inflight_entertainmt,On-board service,leg_room_service,baggage_handling,Checkin service,inflight_service,cleanliness,satisfaction
+delay,eco,eco_plus,business,gender,customer_type,ToT,flight_distance,iwservice,da_time_convenient,ease_online_booking,gate_location,food_and_drink,online_boarding,seat_comfort,inflight_entertainmt,on_board_service,leg_room_service,baggage_handling,Checkin service,inflight_service,cleanliness,satisfaction
 0,1,0,0,1,1,0,1678,3,2,3,2,4,3,4,4,4,3,2,3,2,4,0
 3,0,0,1,0,1,1,954,2,2,2,2,2,3,1,4,4,4,4,2,4,4,1
 0,1,0,0,0,1,1,189,2,1,1,1,2,2,2,2,1,2,4,1,4,2,0
