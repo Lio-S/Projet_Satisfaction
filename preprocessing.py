@@ -53,7 +53,7 @@ def preprocess_data(data, test_data, train_data):
     data = data.rename(columns={'Baggage handling': 'baggage_handling'})
     data = data.rename(columns={'Cleanliness': 'cleanliness'})
     data = data.rename(columns={'Inflight service': 'inflight_service'})
-    data = data.rename(columns={'Checkin service ': 'chk_service'})
+    data = data.rename(columns={'Checkin service': 'chk_service'})
     data = data.rename(columns={'Gate location': 'gate_location'})
     data = data.rename(columns={'Food and drink': 'food_and_drink'})
     data = data.rename(columns={'Departure/Arrival time convenient': 'da_time_convenient'})
