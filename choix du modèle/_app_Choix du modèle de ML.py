@@ -27,7 +27,7 @@ y_test = test_data["Satisfaction"]
 st.title("Tableau de bord pour l'apprentissage automatique")
 
 # Création et entraînement du modèle
-clf = RandomForestClassifier()
+clf = RandomForestClassifier(n_jobs=-1,class_weight='balanced')  
 clf.fit(X_train, y_train)
 
 # Prédiction sur l'ensemble de test
@@ -38,7 +38,8 @@ accuracy = accuracy_score(y_test, y_pred)
 st.write(f"Précision du modèle : {accuracy:.2f}")
 # Affichage du rapport de classification
 # print('y_test =', y_test)
-report = classification_report(y_test, y_pred)
+target_names = train_data.columns
+report = classification_report(y_test, y_pred, target_names=train_data.columns)
 st.text("Rapport de classification :")
 st.text(report)
 
