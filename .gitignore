@@ -8,3 +8,5 @@ app_old.py
 test.py
 test_API.py
 11_DashboardIA.py
+Airline_Dataset_db.sqlite
+Airline_Dataset_to_BDD.csv
