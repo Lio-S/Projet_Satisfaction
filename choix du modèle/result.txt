@@ -1,5 +1,6 @@
 # 1. Régression logistique :
-Accuracy: 0.792346781644595 /n Report : 
+Accuracy: 0.792346781644595
+Report : 
               precision    recall  f1-score   support
 
            0       0.84      0.78      0.81     14622
@@ -26,6 +27,11 @@ Rapport de classification :
    macro avg       0.96      0.96      0.96     25976
 weighted avg       0.96      0.96      0.96     25976
 
-# 4. SVM ???
+# 4. SVM / Arbre de décision (DecisionTreeClassifier)/ RandomForestClassifier/logistique
 
-# 5. Arbre de décision (DecisionTreeClassifier)
+                        Accuracy  precision    recall  f1-score   
+
+          logistique       0.79	   0.75	      0.79	   0.77
+   Arbre de décision       0.95	   0.94	      0.94	   0.94
+RandomForestClassifier     0.96	   0.97	      0.94	   0.95
+                  SVM      0.67	   0.68	      0.45  	0.54
