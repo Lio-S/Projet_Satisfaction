@@ -2,7 +2,7 @@ import sys, os
 sys.path.append(os.path.dirname(__file__) + "/..")
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import sessionmaker
-from Components.models import Genders, Customer_types, Type_of_travel, Classes, Satisfaction, Traveler
+from components.models import Genders, Customer_types, Type_of_travel, Classes, Satisfaction, Traveler
 
 db_url = "sqlite:///BDD_sqlite/Airline_Dataset_db.sqlite"
 engine = create_engine(db_url)

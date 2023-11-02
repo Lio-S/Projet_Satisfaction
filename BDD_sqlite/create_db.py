@@ -1,10 +1,10 @@
 import sys, os
 sys.path.append(os.path.dirname(__file__) + "/..")
 import pandas as pd
-from Components.db_utilities import create_db_tables, mult_replace
+from components.db_utilities import create_db_tables, mult_replace
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from Components.models import Base, Genders, Customer_types, Type_of_travel, Classes, Satisfaction, Traveler
+from components.models import Base, Genders, Customer_types, Type_of_travel, Classes, Satisfaction, Traveler
 import csv
 
 
