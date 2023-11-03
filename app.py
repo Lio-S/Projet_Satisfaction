@@ -49,11 +49,6 @@ with prevision_df_tab:
             eco = 1
             eco_plus = 0
             business = 1
-    #     eco = int(st.radio("Eco", ["1", "0"]))
-    # with cols_up3:
-    #     eco_plus = int(st.radio("Eco Plus", ["0", "1"]))
-    # with cols_up4:
-    #     business = int(st.radio("Business", ["0", "1"]))
     with cols_up3:
         custumer_type = int(st.radio("Custumer Type", ["1", "0"], key="custumer_type"))
     with cols_up5:
@@ -76,23 +71,18 @@ with prevision_df_tab:
 
     # Créer le modèle Random Forest
     clf_client = RandomForestClassifier(n_jobs=-1,class_weight='balanced') 
-    # features = [delay, eco, eco_plus, business, custumer_type, ToT, flight_distance, gender]
     dataset = pd.read_csv("data/Airline_Dataset.csv")
     features = ["delay", "eco", "eco_plus", "business", "gender", "customer_type", "ToT", "flight_distance", "satisfaction"]
     votes = ["cleanliness", "inflight_service", "chk_service", "gate_location", "food_and_drink", "da_time_convenient", "iwservice",
      "ease_online_booking", "online_boarding", "seat_comfort", "inflight_entertainmt", "leg_room_service", "on_board_service","baggage_handling"]
     dataset_features = dataset[features] 
-    # dataset_features = dataset.loc[:, features] 
     dataset_votes = dataset[votes] 
-    # dataset_features.insert(24, 'satisfaction', dataset['satisfaction'])
     dataset_features = pd.concat([dataset_features, dataset_votes], axis=1)
-    # Split the data into training and testing sets
     X = dataset_features.drop("satisfaction", axis=1)
     y = dataset_features["satisfaction"]
     # Entraîner le modèle
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     clf_client.fit(X_train, y_train)
-    # st.bar_chart(dataset_features.satisfaction)
     st.header("Voting :")
 
     cols_up1, cols_up2,cols_up3, cols_up4 = st.columns([1,1,1,1])
@@ -146,11 +136,6 @@ with prevision_df_tab:
                 ease_online_booking, online_boarding, seat_comfort, inflight_entertainmt,
                 leg_room_service, on_board_service, baggage_handling
             ])
-            # ], columns=[
-            #     "delay", "eco", "eco_plus", "business", "gender", "customer_type", "ToT",
-            #     "flight_distance", "cleanliness", "inflight_service", "chk_service", "gate_location",
-            #     "food_and_drink", "da_time_convenient", "iwservice", "ease_online_booking", "online_boarding",
-            #     "seat_comfort", "inflight_entertainmt", "leg_room_service", "on_board_service", "baggage_handling"])
             X = np.array(X).reshape(1, -1)
             X = pd.DataFrame(X, columns=["delay", "eco", "eco_plus", "business", "gender", "customer_type", "ToT",
             "flight_distance", "cleanliness", "inflight_service", "chk_service", "gate_location",
@@ -170,19 +155,6 @@ with prevision_df_tab:
             # Affichage de la précision du modèle
         st.session_state.running = False
 
-    # with cols_up2:   
-        # feature15 = st.slider("seat_comfort", min_value=0, max_value=5, step=1)
-        # feature16 = st.slider("inflight_entertainmt", min_value=0, max_value=5, step=1)
-        # feature17 = st.slider("on_board_service", min_value=0, max_value=5, step=1)
-    #     feature18 = st.slider("leg_room_service", min_value=0, max_value=5, step=1)
-    #     feature19 = st.slider("baggage_handling", min_value=0, max_value=5, step=1)
-    #     feature20 = st.slider("chk_service", min_value=0, max_value=5, step=1)
-    #     feature21 = st.slider("inflight_service", min_value=0, max_value=5, step=1)
-    #     feature22 = st.slider("cleanliness", min_value=0, max_value=5, step=1)
-    #     feature23 = st.radio("Satisfaction", ["Oui", "Non"])
-        # feature24 = st.radio("Caractéristique 19", ["Oui", "Non"])
-
-
 with apprentissage_df_tab:
     # Créez une application Streamlit
     st.title("Tableau de bord pour l'apprentissage automatique")
@@ -197,12 +169,7 @@ with apprentissage_df_tab:
     # Affichage de la précision du modèle
     accuracy = accuracy_score(y_test, y_pred)
     st.write(f"Précision du modèle : {accuracy:.2f}")
-    # Affichage du rapport de classification
-    # print('y_test =', y_test)
 
-    #####################A Developper
-    # target_names = train_data.columns
-    # report = classification_report(y_test, y_pred, target_names=train_data.columns)
     report = classification_report(y_test, y_pred)
     st.text("Rapport de classification :")
     st.text(report)
@@ -216,10 +183,6 @@ with apprentissage_df_tab:
     st.write("Données de test :")
     # st.write(X_test)
     st.dataframe(X_test)
-
-# # Affichage d'un graphique
-# st.header("Graphique")
-# st.bar_chart(data.data)
 
 with dashboard_test_tab:
     # Créez une application Streamlit
