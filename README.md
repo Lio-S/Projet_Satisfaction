@@ -209,10 +209,14 @@ To create the Data Base, you must launch the program create_db.py, that will fir
 
 If you want to test the Data Base, please, use the 'test/read_tbl_test.py' program that should make some reading og the data base and insure that jointures are properly working by reading the Data Base and assigning the proper values.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- TRELLO LINK AND AGILE METHOD -->
 ## Trello link and Agile method
 
 We did this job as Agile method experience. We first designed 'user stories' that you can overview at 'https://trello.com/invite/b/lW7lwk1i/ATTI28b223c31d2ae2532259531eea44cffc694C9DEA/the-plane-project-trello'. Then, we discuss two times a day our progress on the project, requesting advices and help from the whole team on specific topic. We did a planing poker to adjust amount of work needed for each of the user stories. We did our best to keep people in the team fully invested and to maintain a good organization.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
 ## Roadmap
