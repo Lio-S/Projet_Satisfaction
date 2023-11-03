@@ -13,8 +13,8 @@ from sklearn.metrics import accuracy_score, classification_report
 #     st.session_state.running = False
 
 # Chargement des données prétraitées
-train_data = pd.read_csv("data\Test_Data.csv")
-test_data = pd.read_csv("data\Test_Data.csv")
+train_data = pd.read_csv("data/Test_Data.csv")
+test_data = pd.read_csv("data/Test_Data.csv")
 X_train = train_data.drop("satisfaction", axis=1)
 X_test = test_data.drop("satisfaction", axis=1)
 y_train = train_data["satisfaction"]

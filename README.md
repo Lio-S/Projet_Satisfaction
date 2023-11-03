@@ -20,14 +20,14 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Insiares/Projet-NLT">
-    <img src="Prototype_NLT/images/logo.png" alt="Logo"  height="200">
+  <a href="https://github.com/Lio-S/Projet_Satisfaction">
+    <img src="Projet_Satisfaction/images/logo.png" alt="Logo"  height="200">
   </a>
 
-<h3 align="center">NLT : A swing at Natural Langage Transcoder</h3>
+<h3 align="center">The fly satisfaction project by ELF</h3>
 
   <p align="center">
-    Our first aI pOwErEd app, helping noob programmers like us.
+    A programm to get more happy passenger, because life is a journey we want to make beautiful
     <br />
     <br />
     <a href="https://github.com/Insiares/Projet-NLT/issues">Report Bug</a>
@@ -56,6 +56,8 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#Relationnal Data Base creation and testing">Usage</a></li>
+    <li><a href="#Trello link and Agile method">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -69,10 +71,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-
-Our first local application, asking OpenAI-API to write code for us. The NLT should provide code corresponding to your prompt, allowing you to save it and edit it. If you ask for python code, you may be able to run it! <br>
+This application is delayed to understand how a flight company can make happy passengers. It uses machine learning to predict passenger happyness according to features such as arrival delays, on board services, ease of check-in.<br>
 <br>
-We made this for school as a way to hone our wobbly skills, and it shows.
+It's a Simplon school project on 2+ days work. We made it carrefully, between three proud student of this great school !
+Hope our product owners/teachers will be proud of us.
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -82,7 +85,7 @@ We made this for school as a way to hone our wobbly skills, and it shows.
 
 * [![Python][Python-shield]][Python-url]
 * [![Streamlit][Streamlit-shield]][Streamlit-url]
-* [![OpenAI][GPT-shield]][GPT-url]
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -93,43 +96,25 @@ We made this for school as a way to hone our wobbly skills, and it shows.
 ## Getting Started
 
 To get a local copy up and running follow these steps.
-You'll need python and docker to run this properly.
+You'll need python to run this properly.
 
 ### Prerequisites
 
-You should possess an OpenAI API key, and have it in your environnement variable under 'OPENAI_API_KEY'.
-
-
-* For Windows, inside a command prompt : 
-  ```sh
-  setx OPENAI_API_KEY "your-api-key-here"
-  ```
-
-* Others : 
-  ```sh
-  export OPENAI_API_KEY='your-api-key-here'
-  ```
-
-_In case we were dumb enough to miss a step, please refer to [OpenAI API documentation](https://platform.openai.com/docs/quickstart )._
+No prerequisites necessary here. Just follow instruction please.
 
 ### Installation
 
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/Insiares/Projet-NLT.git
+   git clone https://github.com/Lio-S/Projet_Satisfaction
    ```
 3. Install required packages
    ```sh
    pip install -r requirements.txt
    ```
-4. Get the docker running
-   ```sh
-   cd ./Prototype_NLT/
-   docker context create compose
-   docker-compose -f docker-compose.yml up -d
-   ```
-4. CD into your /Prototype_NLT/ directory, and run the app inside your browser
+
+4. CD into your /Projet_Satisfaction/ directory, and run the app inside your browser
    ```py
    streamlit run app.py
    ```
@@ -141,11 +126,45 @@ _In case we were dumb enough to miss a step, please refer to [OpenAI API documen
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Enter your demand in the first text area, if you modify it and want to ask again, don't forget to validate by hitting CTRL+Enter.
+Our application is divided in three tabs.
 
-The outputed code is displayed below in an editor. You can play with the code, and even run it (If giant pasta god's willing). If you want to keep your code for further use, hit run at least once to save it inside the database. 
+-Tab one : 'Tableau de bord, Prévision'
 
-You can then load previous session in the left sidebar. Choose your prompt and load it.
+This is the functionnal part for the app's user. Here the user can adjust variable such as departure delay, travel classes and others to simulate a passenger experience.
+
+After adjusting these parameters, the user should click the 'Prédire la satisfaction client' buton to let the prediction model evaluate the satisfaction of the simulated customer. Once the button is clicked, the user will get the answer about the prediction on passenger satisfaction.
+
+-Tab two : 'Apprentissage'
+
+The second tab is a summary of the machine learning model training. We use 'Random Forest' as a model to predict passenger satisfaction. The full dataset was splitted into train and test sample on a 80%, 20% subpart respectively. Details on features processing are as follow : 
+
+Passenger ID = Removed, it is just random numbers with no impact on passenger satisfaction
+delay = Sum of arrival and departure delay
+Passenger travel classes = divided in three features for model training
+gender = 0 for male; 1 for female
+customer_type : 0 for disloyal customer; 1 for loyal customer
+Tot = tipe of travel. Personnal travel : 0; Business travel : 1.
+flight distance = flight distance in km
+iwservice = Inflight wifi service, scored by passenger from 0 to 5
+da_time_convenient = Departure/Arrival time convenient, scored by passenger from 0 to 5
+ease_online_booking = Ease of Online booking, scored by passenger from 0 to 5
+gate_location = Gate location, scored by passenger from 0 to 5
+food_and_drink = Food and drink, scored by passenger from 0 to 5
+online_boarding = Online boarding, scored by passenger from 0 to 5
+seat_comfort = Seat comfort, scored by passenger from 0 to 5
+inflight_entertainmt = Inflight entertainment, scored by passenger from 0 to 5
+on_board_service = On-board service, scored by passenger from 0 to 5
+leg_room_service = Leg room service, scored by passenger from 0 to 5
+baggage_handling = Baggage handling, scored by passenger from 0 to 5
+chk_service = Checkin service, scored by passenger from 0 to 5
+inflight_service = Inflight service, scored by passenger from 0 to 5
+cleanliness = Cleanliness,scored by passenger from 0 to 5
+
+-Tab two : 'Test et ajout de données'
+
+The last tab will be used by user to upload more data and use them to train the machine learning model. The new data will be processed as the original data set to fit in our prediction assay.
+
+Three data format are available here comma separated files (.csv), excel type files (.xl), and JSON files (.json)
 
 Might still be buggy, you can [open an issue](https://github.com/Insiares/Projet-NLT/issues).
 
@@ -153,17 +172,38 @@ Might still be buggy, you can [open an issue](https://github.com/Insiares/Projet
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<!-- RELATIONNAL DATA BASE CREATION AND TESTING -->
+### Relationnal Data Base creation and testing
+
+As a part of the project we created a relational database. We decided to use a 'SQLite' Data Base due to the type of the project and the relative simplicity of the data we get. This database is made of a central table surrounded by five dimensionnal tables. 
+
+Such as follow :
+
+Genders = 1 : male, 2 : female
+Customer_types = 1 : Loyal Customer, 2 : disloyal Customer
+Type_of_travel = 1 : Personal Travel, 2 : Business travel
+Classes =  1 : Eco plus, 2 : Business, 3 : Eco
+Satisfaction = 1 : neutral or dissatisfied, 2 : satisfied
+
+To create the Data Base, you must launch the program create_db.py, that will first use the data file 'data/Airline_Dataset.csv' to create a 'data/Airline_Dataset_to_BDD.csv' and create a fully operationnal SQLite Data Base.
+
+If you want to test the Data Base, please, use the 'test/read_tbl_test.py' program that should make some reading og the data base and insure that jointures are properly working by reading the Data Base and assigning the proper values.
+
+<!-- TRELLO LINK AND AGILE METHOD -->
+## Trello link and Agile method
+
+We did this job as Agile method experience. We first designed 'user stories' that you can overview at 'https://trello.com/invite/b/lW7lwk1i/ATTI28b223c31d2ae2532259531eea44cffc694C9DEA/the-plane-project-trello'. Then, we discuss two times a day our progress on the project, requesting advices and help from the whole team on specific topic. We did a planing poker to adjust amount of work needed for each of the user stories. We did our best to keep people in the team fully invested and to maintain a good organization.
 
 <!-- ROADMAP -->
 ## Roadmap
 
 - [x] Prototype
-- [x] Session Recording
-- [X] Save-enabled editable code block.
-- [X] Execute outputed code.
-- [~] Prompt Engineering
-    - [~] More Langages
-    - [ ] Different assistant personality
+- [x] Exploring and processing data for Machine learning
+- [x] Realational Data Base conception and creation
+- [x] Machine-Learning effective prediction
+- [X] Uploading New files functionality
+- [X] User experience, prediction of passenger happyness
+- [~] app log-in
 
 See the [open issues](https://github.com/Insiares/Projet-NLT/issues) for a full list of proposed features (and known issues).
 
@@ -174,7 +214,7 @@ See the [open issues](https://github.com/Insiares/Projet-NLT/issues) for a full 
 <!-- CONTRIBUTING -->
 ## Contributing
 
-You shall not feel the need to. 
+We are up tu ear any suggestion, feel free to contribute !
 
 Should the extrem necessity emerges, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 
@@ -193,7 +233,7 @@ Should the extrem necessity emerges, please fork the repo and create a pull requ
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the Simplon students, we live in a free country ! 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -202,7 +242,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Please don't.
+Find us if you can.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -211,48 +251,8 @@ Please don't.
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* [Adrien for the awesome brief](https://github.com/dtrckd)
-* [Antony for showing us the ropes of streamlit](https://github.com/DeVerMyst)
-* [The genius who made the IA cover of Bloody Stream by Johnny Halliday, allowing me to maintain my sanity](https://www.youtube.com/watch?v=FIfvL6Wx3QM)
+* [Antony for the tortuous brief, and the helpful assistance !](https://github.com/DeVerMyst)
+* [The whole group of Simplon Dev/IA group for discussion and exchange on the project]
+* [The Simplon team, smiles and gentlyness !]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/Insiares/Projet-NLT.svg?style=for-the-badge
-[contributors-url]: https://github.com/Insiares/Projet-NLT/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Insiares/Projet-NLT.svg?style=for-the-badge
-[forks-url]: https://github.com/Insiares/Projet-NLT/network/members
-[stars-shield]: https://img.shields.io/github/stars/Insiares/Projet-NLT.svg?style=for-the-badge
-[stars-url]: https://github.com/Insiares/Projet-NLT/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Insiares/Projet-NLT.svg?style=for-the-badge
-[issues-url]: https://github.com/Insiares/Projet-NLT/issues
-[license-shield]: https://img.shields.io/github/license/Insiares/Projet-NLT.svg?style=for-the-badge
-[license-url]: https://github.com/Insiares/Projet-NLT/blob/master/LICENSE.txt
-[GPT-shield]:https://img.shields.io/badge/chatGPT-74aa9c?logo=openai&logoColor=white
-[GPT-url]:https://openai.com/
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Python-shield]:https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
-[Python-url]:https://www.python.org/
-[Streamlit-shield]:https://static.streamlit.io/badges/streamlit_badge_black_white.svg
-[Streamlit-url]:https://streamlit.io/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
