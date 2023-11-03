@@ -28,28 +28,41 @@ with prevision_df_tab:
     st.title("Prédiction de la satisfaction client")
     st.write("Entrez les caractéristiques du client pour prédire sa satisfaction.")
 
-    cols_up1, cols_up2,cols_up3, cols_up4,cols_up5,cols_up6 = st.columns([1,1,1,1,1,1])
+    cols_up1, cols_up2,cols_up3, cols_up4,cols_up5 = st.columns([1,1,1,1,1])
 
     with cols_up1:
         # # Entrée des caractéristiques du client
         max_value_delay = dataset['delay'].max()
         mean_value_delay = int(dataset['delay'].mean())
-        delay = st.slider("delay", min_value=0, max_value=max_value_delay, step=1, value=mean_value_delay)
+        delay = st.slider("delay", min_value=0, max_value=max_value_delay, step=1, value=mean_value_delay, key="delay")
     with cols_up2:
-        eco = int(st.radio("Eco", ["1", "0"]))
+        pass_class_selec = st.selectbox("Passenger Class", ('Eco', 'Eco +', 'Business'))
+        if pass_class_selec == 'Eco' :
+            eco = 1
+            eco_plus = 0
+            business = 0
+        elif pass_class_selec == 'Eco+' :
+            eco = 0
+            eco_plus = 1
+            business = 0
+        elif pass_class_selec == 'Business' :
+            eco = 1
+            eco_plus = 0
+            business = 1
+    #     eco = int(st.radio("Eco", ["1", "0"]))
+    # with cols_up3:
+    #     eco_plus = int(st.radio("Eco Plus", ["0", "1"]))
+    # with cols_up4:
+    #     business = int(st.radio("Business", ["0", "1"]))
     with cols_up3:
-        eco_plus = int(st.radio("Eco Plus", ["0", "1"]))
-    with cols_up4:
-        business = int(st.radio("Business", ["0", "1"]))
+        custumer_type = int(st.radio("Custumer Type", ["1", "0"], key="custumer_type"))
     with cols_up5:
-        custumer_type = int(st.radio("Custumer Type", ["1", "0"]))
-    with cols_up6:
         st.write("(Custumer Type = '1' pour Loyal Customer)")
 
     cols_up1, cols_up2,cols_up3, cols_up4, cols_up5 = st.columns([1,1,1,1,1])
 
     with cols_up1:
-        ToT = int(st.radio("Type of Travel", ["1", "0"]))
+        ToT = int(st.radio("Type of Travel", ["1", "0"]), key="ToT")
     with cols_up2:
         st.write("(Type of Travel = '1' pour Business travel)")
     with cols_up3:
@@ -57,24 +70,10 @@ with prevision_df_tab:
         mean_value_flight_distance = int(dataset['flight_distance'].mean())
         flight_distance = st.slider("Flight Distance", min_value=0, max_value=max_value_flight_distance, step=1, value=mean_value_flight_distance) 
     with cols_up4:
-        gender = int(st.radio("Gender", ["1", "0"]))
+        gender = int(st.radio("Gender", ["1", "0"]), key="gender")
     with cols_up5:
         st.write("(Gender = '1' pour Homme)")
-    # Affichage d'un titre
-    # dataset_votes_cleanliness = int(dataset_votes.cleanliness.mean()) 
-    # dataset_votes_inflight_service = int(dataset_votes.inflight_service.mean())
-    # dataset_votes_chk_service = int(dataset_votes.chk_service.mean())
-    # dataset_votes_gate_location = int(dataset_votes.gate_location.mean())
-    # dataset_votes_food_and_drink = int(dataset_votes.food_and_drink.mean())
-    # dataset_votes_da_time_convenient = int(dataset_votes.da_time_convenient.mean())
-    # dataset_votes_iwservice = int(dataset_votes.iwservice.mean())
-    # dataset_votes_ease_online_booking = int(dataset_votes.ease_online_booking.mean())
-    # dataset_votes_online_boarding = int(dataset_votes.online_boarding.mean())
-    # dataset_votes_seat_comfort = int(dataset_votes.seat_comfort.mean())
-    # dataset_votes_inflight_entertainmt = int(dataset_votes.inflight_entertainmt.mean())
-    # dataset_votes_leg_room_service = int(dataset_votes.leg_room_service.mean())
-    # dataset_votes_on_board_service = int(dataset_votes.on_board_service.mean())
-    # dataset_votes_baggage_handling = int(dataset_votes.baggage_handling.mean())
+
     # Créer le modèle Random Forest
     clf_client = RandomForestClassifier(n_jobs=-1,class_weight='balanced') 
     # features = [delay, eco, eco_plus, business, custumer_type, ToT, flight_distance, gender]
