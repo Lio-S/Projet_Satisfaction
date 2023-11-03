@@ -22,7 +22,7 @@ y_train = train_data["satisfaction"]
 y_test = test_data["satisfaction"]
 
 dataset = pd.read_csv("data/Airline_Dataset.csv")
-prevision_df_tab, apprentissage_df_tab, dashboard_test_tab = st.tabs(['Prévision', 'Apprentissage', 'Test et ajout données'])
+prevision_df_tab, apprentissage_df_tab, dashboard_test_tab = st.tabs(['Prévision', 'Modèle', 'Test et ajout données'])
 
 with prevision_df_tab:
     # # Interface utilisateur avec Streamlit
@@ -158,7 +158,7 @@ with prevision_df_tab:
 
 with apprentissage_df_tab:
     # Créez une application Streamlit
-    st.title("Tableau de bord pour l'apprentissage automatique")
+    st.title("Tableau de bord du modèle utilisé")
 
     # Création et entraînement du modèle
     clf = RandomForestClassifier(n_jobs=-1,class_weight='balanced')  
