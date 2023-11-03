@@ -21,7 +21,6 @@
 <br />
 <div align="center">
   <a href="https://github.com/Lio-S/Projet_Satisfaction">
-    <img src="Projet_Satisfaction/images/logo.png" alt="Logo"  height="200">
   </a>
 
 <h3 align="center">The fly satisfaction project by ELF</h3>
@@ -30,9 +29,7 @@
     A programm to get more happy passenger, because life is a journey we want to make beautiful
     <br />
     <br />
-    <a href="https://github.com/Insiares/Projet-NLT/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/Insiares/Projet-NLT/issues">Request Feature</a>
+
   </p>
 </div>
 
@@ -139,25 +136,44 @@ After adjusting these parameters, the user should click the 'Prédire la satisfa
 The second tab is a summary of the machine learning model training. We use 'Random Forest' as a model to predict passenger satisfaction. The full dataset was splitted into train and test sample on a 80%, 20% subpart respectively. Details on features processing are as follow : 
 
 Passenger ID = Removed, it is just random numbers with no impact on passenger satisfaction
+
 delay = Sum of arrival and departure delay
+
 Passenger travel classes = divided in three features for model training
 gender = 0 for male; 1 for female
+
 customer_type : 0 for disloyal customer; 1 for loyal customer
-Tot = tipe of travel. Personnal travel : 0; Business travel : 1.
+
+Tot = tipe of travel. Personnal travel : 0; Business travel : 1
+
 flight distance = flight distance in km
+
 iwservice = Inflight wifi service, scored by passenger from 0 to 5
+
 da_time_convenient = Departure/Arrival time convenient, scored by passenger from 0 to 5
+
 ease_online_booking = Ease of Online booking, scored by passenger from 0 to 5
+
 gate_location = Gate location, scored by passenger from 0 to 5
+
 food_and_drink = Food and drink, scored by passenger from 0 to 5
+
 online_boarding = Online boarding, scored by passenger from 0 to 5
+
 seat_comfort = Seat comfort, scored by passenger from 0 to 5
+
 inflight_entertainmt = Inflight entertainment, scored by passenger from 0 to 5
+
 on_board_service = On-board service, scored by passenger from 0 to 5
+
 leg_room_service = Leg room service, scored by passenger from 0 to 5
+
 baggage_handling = Baggage handling, scored by passenger from 0 to 5
+
 chk_service = Checkin service, scored by passenger from 0 to 5
+
 inflight_service = Inflight service, scored by passenger from 0 to 5
+
 cleanliness = Cleanliness,scored by passenger from 0 to 5
 
 -Tab two : 'Test et ajout de données'
@@ -180,9 +196,13 @@ As a part of the project we created a relational database. We decided to use a '
 Such as follow :
 
 Genders = 1 : male, 2 : female
+
 Customer_types = 1 : Loyal Customer, 2 : disloyal Customer
+
 Type_of_travel = 1 : Personal Travel, 2 : Business travel
+
 Classes =  1 : Eco plus, 2 : Business, 3 : Eco
+
 Satisfaction = 1 : neutral or dissatisfied, 2 : satisfied
 
 To create the Data Base, you must launch the program create_db.py, that will first use the data file 'data/Airline_Dataset.csv' to create a 'data/Airline_Dataset_to_BDD.csv' and create a fully operationnal SQLite Data Base.
