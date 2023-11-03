@@ -62,7 +62,7 @@ with prevision_df_tab:
     cols_up1, cols_up2,cols_up3, cols_up4, cols_up5 = st.columns([1,1,1,1,1])
 
     with cols_up1:
-        ToT = int(st.radio("Type of Travel", ["1", "0"]), key="ToT")
+        ToT = int(st.radio("Type of Travel", ["1", "0"], key="ToT"))
     with cols_up2:
         st.write("(Type of Travel = '1' pour Business travel)")
     with cols_up3:
@@ -70,7 +70,7 @@ with prevision_df_tab:
         mean_value_flight_distance = int(dataset['flight_distance'].mean())
         flight_distance = st.slider("Flight Distance", min_value=0, max_value=max_value_flight_distance, step=1, value=mean_value_flight_distance) 
     with cols_up4:
-        gender = int(st.radio("Gender", ["1", "0"]), key="gender")
+        gender = int(st.radio("Gender", ["1", "0"], key="gender"))
     with cols_up5:
         st.write("(Gender = '1' pour Homme)")
 
