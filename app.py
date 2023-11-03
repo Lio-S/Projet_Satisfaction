@@ -35,7 +35,7 @@ with prevision_df_tab:
         # # Entrée des caractéristiques du client
         max_value_delay = dataset['delay'].max()
         mean_value_delay = int(dataset['delay'].mean())
-        delay = st.slider("arrival and departure delay", min_value=0, max_value=max_value_delay, step=1, value=mean_value_delay, key="delay")
+        delay = st.slider("Arrival/Departure Delay", min_value=0, max_value=max_value_delay, step=1, value=mean_value_delay, key="delay")
     with cols_up2:
         pass_class_selec = st.selectbox("Passenger Class", ('Eco', 'Eco +', 'Business'))
         if pass_class_selec == 'Eco' :
