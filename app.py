@@ -4,13 +4,13 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
-# from components.utils_streamlit import run_disable, enable
+from components.utils_streamlit import run_disable, enable
 
 # ----------------------- session state declaration -----------------------
 #intern function and session logics and declared in this section
 
-# if 'running' not in st.session_state:
-#     st.session_state.running = False
+if 'result_prediction_btn' not in st.session_state:
+    st.session_state.result_prediction_btn = False
 
 # Chargement des données prétraitées
 train_data = pd.read_csv("data\Test_Data.csv")
@@ -24,9 +24,6 @@ dataset = pd.read_csv("data/Airline_Dataset.csv")
 prevision_df_tab, apprentissage_df_tab, dashboard_test_tab = st.tabs(['Prévision', 'Apprentissage', 'Test et ajout données'])
 
 with prevision_df_tab:
-    # Créer une application Streamlit
-    st.title("Tableau de bord Prévision")
-
     # # Interface utilisateur avec Streamlit
     st.title("Prédiction de la satisfaction client")
     st.write("Entrez les caractéristiques du client pour prédire sa satisfaction.")
@@ -39,20 +36,20 @@ with prevision_df_tab:
         mean_value_delay = int(dataset['delay'].mean())
         delay = st.slider("delay", min_value=0, max_value=max_value_delay, step=1, value=mean_value_delay)
     with cols_up2:
-        eco = st.radio("Eco", ["1", "0"])
+        eco = int(st.radio("Eco", ["1", "0"]))
     with cols_up3:
-        eco_plus = st.radio("Eco Plus", ["0", "1"])
+        eco_plus = int(st.radio("Eco Plus", ["0", "1"]))
     with cols_up4:
-        business = st.radio("Business", ["0", "1"])
+        business = int(st.radio("Business", ["0", "1"]))
     with cols_up5:
-        custumer_type = st.radio("Custumer Type", ["1", "0"])
+        custumer_type = int(st.radio("Custumer Type", ["1", "0"]))
     with cols_up6:
         st.write("(Custumer Type = '1' pour Loyal Customer)")
 
     cols_up1, cols_up2,cols_up3, cols_up4, cols_up5 = st.columns([1,1,1,1,1])
 
     with cols_up1:
-        ToT = st.radio("Type of Travel", ["1", "0"])
+        ToT = int(st.radio("Type of Travel", ["1", "0"]))
     with cols_up2:
         st.write("(Type of Travel = '1' pour Business travel)")
     with cols_up3:
@@ -60,68 +57,134 @@ with prevision_df_tab:
         mean_value_flight_distance = int(dataset['flight_distance'].mean())
         flight_distance = st.slider("Flight Distance", min_value=0, max_value=max_value_flight_distance, step=1, value=mean_value_flight_distance) 
     with cols_up4:
-        gender = st.radio("Gender", ["1", "0"])
+        gender = int(st.radio("Gender", ["1", "0"]))
     with cols_up5:
         st.write("(Gender = '1' pour Homme)")
-        
+    # Affichage d'un titre
+    # dataset_votes_cleanliness = int(dataset_votes.cleanliness.mean()) 
+    # dataset_votes_inflight_service = int(dataset_votes.inflight_service.mean())
+    # dataset_votes_chk_service = int(dataset_votes.chk_service.mean())
+    # dataset_votes_gate_location = int(dataset_votes.gate_location.mean())
+    # dataset_votes_food_and_drink = int(dataset_votes.food_and_drink.mean())
+    # dataset_votes_da_time_convenient = int(dataset_votes.da_time_convenient.mean())
+    # dataset_votes_iwservice = int(dataset_votes.iwservice.mean())
+    # dataset_votes_ease_online_booking = int(dataset_votes.ease_online_booking.mean())
+    # dataset_votes_online_boarding = int(dataset_votes.online_boarding.mean())
+    # dataset_votes_seat_comfort = int(dataset_votes.seat_comfort.mean())
+    # dataset_votes_inflight_entertainmt = int(dataset_votes.inflight_entertainmt.mean())
+    # dataset_votes_leg_room_service = int(dataset_votes.leg_room_service.mean())
+    # dataset_votes_on_board_service = int(dataset_votes.on_board_service.mean())
+    # dataset_votes_baggage_handling = int(dataset_votes.baggage_handling.mean())
     # Créer le modèle Random Forest
     clf_client = RandomForestClassifier(n_jobs=-1,class_weight='balanced') 
+    # features = [delay, eco, eco_plus, business, custumer_type, ToT, flight_distance, gender]
+    dataset = pd.read_csv("data/Airline_Dataset.csv")
+    features = ["delay", "eco", "eco_plus", "business", "gender", "customer_type", "ToT", "flight_distance", "satisfaction"]
+    votes = ["cleanliness", "inflight_service", "chk_service", "gate_location", "food_and_drink", "da_time_convenient", "iwservice",
+     "ease_online_booking", "online_boarding", "seat_comfort", "inflight_entertainmt", "leg_room_service", "on_board_service","baggage_handling"]
+    dataset_features = dataset[features] 
+    # dataset_features = dataset.loc[:, features] 
+    dataset_votes = dataset[votes] 
+    # dataset_features.insert(24, 'satisfaction', dataset['satisfaction'])
+    dataset_features = pd.concat([dataset_features, dataset_votes], axis=1)
+    # Split the data into training and testing sets
+    X = dataset_features.drop("satisfaction", axis=1)
+    y = dataset_features["satisfaction"]
+    # Entraîner le modèle
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    clf_client.fit(X_train, y_train)
+    # st.bar_chart(dataset_features.satisfaction)
+    st.header("Voting :")
+
+    cols_up1, cols_up2,cols_up3, cols_up4 = st.columns([1,1,1,1])
+
+    with cols_up1:
+        cleanliness = st.slider("cleanliness", min_value=0, max_value=5, step=1,key="cleanliness", value=int(dataset_votes.cleanliness.mean()))
+    with cols_up2:
+        inflight_service = st.slider("inflight_service", min_value=0, max_value=5, step=1,key="inflight_service", value=int(dataset_votes.inflight_service.mean()))
+    with cols_up3:
+        chk_service = st.slider("chk_service", min_value=0, max_value=5, step=1,key="chk_service", value=int(dataset_votes.chk_service.mean()))
+    with cols_up4:
+        gate_location = st.slider("gate_location", min_value=0, max_value=5, step=1,key="gate_location", value=int(dataset_votes.gate_location.mean()))
+
+    cols_up5, cols_up6,cols_up7, cols_up8,cols_up9 = st.columns([1,1,1,1,1])
+
+    with cols_up5:
+        food_and_drink = st.slider("food_and_drink", min_value=0, max_value=5, step=1,key="food_and_drink", value=int(dataset_votes.food_and_drink.mean()))
+    with cols_up6:
+        da_time_convenient = st.slider("da_time_convenient", min_value=0, max_value=5, step=1,key="da_time_convenient", value=int(dataset_votes.da_time_convenient.mean()))
+    with cols_up7:
+        iwservice = st.slider("iwservice", min_value=0, max_value=5, step=1,key="iwservice", value=int(dataset_votes.iwservice.mean()))
+    with cols_up8:
+        ease_online_booking = st.slider("ease_online_booking", min_value=0, max_value=5, step=1,key="ease_online_booking", value=int(dataset_votes.ease_online_booking.mean()))    
+    with cols_up9:
+        online_boarding = st.slider("online_boarding", min_value=0, max_value=5, step=1,key="online_boarding", value=int(dataset_votes.online_boarding.mean())) 
+
+    cols_up10, cols_up11,cols_up12, cols_up13,cols_up14 = st.columns([1,1,1,1,1])
+
+    with cols_up10:
+        seat_comfort = st.slider("seat_comfort", min_value=0, max_value=5, step=1,key="seat_comfort", value=int(dataset_votes.seat_comfort.mean()))
+    with cols_up11:
+        inflight_entertainmt = st.slider("inflight_entertainmt", min_value=0, max_value=5, step=1,key="inflight_entertainmt", value=int(dataset_votes.inflight_entertainmt.mean()))
+    with cols_up12:
+        leg_room_service = st.slider("leg_room_service", min_value=0, max_value=5, step=1,key="leg_room_service", value=int(dataset_votes.leg_room_service.mean()))
+    with cols_up13:
+        on_board_service = st.slider("on_board_service", min_value=0, max_value=5, step=1,key="on_board_service", value=int(dataset_votes.on_board_service.mean()))    
+    with cols_up14:
+        baggage_handling = st.slider("baggage_handling", min_value=0, max_value=5, step=1,key="baggage_handling", value=int(dataset_votes.baggage_handling.mean()))    
+    
     # Prédire la satisfaction client
-    def Predire_la_satisfaction_client() :
-        with st.spinner('Working AI magic...'): # loading widget
-            # features = [delay, eco, eco_plus, business, custumer_type, ToT, flight_distance, gender]
-            features = ["delay", "eco", "eco_plus", "business", "gender", "customer_type", "ToT", "flight_distance"]
-            features_votes = ["cleanliness", "inflight_service", "chk_service", "gate_location", "food_and_drink", 
-            "da_time_convenient", "flight_distance", "flight_distance", "iwservice", "ease_online_booking", "online_boarding", 
-            "seat_comfort", "inflight_entertainmt", "leg_room_service", "on_board_service","baggage_handling"]
-            dataset_features = dataset.loc[:, features] 
-            dataset_features.insert(8, 'satisfaction', dataset['satisfaction'])
-            dataset_votes = dataset.loc[:, features_votes] 
-            dataset_features = pd.concat([dataset_votes, dataset_features], axis=1)
+    result_prediction_btn = st.session_state.result_prediction_btn
+    result_prediction_btn = st.button(label='Prédire la satisfaction client', type="primary",key='button_pred', disabled= result_prediction_btn)
+
+    if result_prediction_btn :
+        with st.spinner('Génération de la prédiction...'): # loading widget
             st.title("Rapport de prévision :")
             st.write("Extrait de dataset_features")
-            st.write(dataset_features.head)
-            # st.write(dataset_features.dtypes)
-            # Split the data into training and testing sets
-            X = dataset_features.drop("satisfaction", axis=1)
-            y = dataset_features["satisfaction"]
-            # Entraîner le modèle
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-            clf_client.fit(X_train, y_train)
-            # dataset_features = dataset.loc[:, features] 
-            prediction = clf_client.predict(X_test)
-            prediction_mean = prediction.mean()
-            # st.write(prediction)
-            st.write(prediction_mean)
-            if prediction_mean > 0.5:
-                st.write("Satisfaction client : Positive")
-                st.success('Positif !', icon='✅')
-            else:
-                st.write("Satisfaction client : Negative")
-                st.success('Negatif!', icon='🚨')
-         # , feature9, feature10, feature11, feature12, feature13, feature14, feature15, feature16, feature17, feature18, feature19, feature20, feature21, feature22, feature23]]
-            # Afficher la prédiction
+            X = pd.DataFrame([
+                delay, eco, eco_plus, business, gender, custumer_type, ToT, flight_distance, dataset_votes_cleanliness, dataset_votes_inflight_service,
+                dataset_votes_chk_service, dataset_votes_gate_location, dataset_votes_food_and_drink, dataset_votes_da_time_convenient, dataset_votes_iwservice,
+                dataset_votes_ease_online_booking, dataset_votes_online_boarding, dataset_votes_seat_comfort, dataset_votes_inflight_entertainmt,
+                dataset_votes_leg_room_service, dataset_votes_on_board_service, dataset_votes_baggage_handling
+            ])
+            # ], columns=[
+            #     "delay", "eco", "eco_plus", "business", "gender", "customer_type", "ToT",
+            #     "flight_distance", "cleanliness", "inflight_service", "chk_service", "gate_location",
+            #     "food_and_drink", "da_time_convenient", "iwservice", "ease_online_booking", "online_boarding",
+            #     "seat_comfort", "inflight_entertainmt", "leg_room_service", "on_board_service", "baggage_handling"])
+            X = np.array(X).reshape(1, -1)
+            X = pd.DataFrame(X, columns=["delay", "eco", "eco_plus", "business", "gender", "customer_type", "ToT",
+            "flight_distance", "cleanliness", "inflight_service", "chk_service", "gate_location",
+            "food_and_drink", "da_time_convenient", "iwservice", "ease_online_booking", "online_boarding",
+            "seat_comfort", "inflight_entertainmt", "leg_room_service", "on_board_service", "baggage_handling"])
+            X
+            prediction = clf_client.predict(X)
+            predict_proba = clf_client.predict_proba(X)[0][1]
+            efficacite_modele = clf_client.score(X_test, y_test)
+            st.write("Satisfaction prediction :", prediction)
+            st.write("Satisfaction predict_proba :", predict_proba)
+            st.write("score du modèle :", efficacite_modele)
+            # if prediction_mean > 0.5:
+            #     st.write("Satisfaction client : Positive")
+            #     st.success('Positif !', icon='✅')
+            # else:
+            #     st.write("Satisfaction client : Negative")
+            #     st.success('Negatif!', icon='🚨')
+            # # Afficher la prédiction
             # st.write("La satisfaction client prédite est :", prediction)
             # Affichage de la précision du modèle
-            accuracy = accuracy_score(y_test, prediction)
-            st.write(f"Précision du modèle : {accuracy:.2f}")
+            # accuracy = accuracy_score(y_test, prediction)
+            # st.write(f"Précision du modèle : {accuracy:.2f}")
             # Affichage du rapport de classification
-            report = classification_report(y_test, prediction)
-            st.text("Rapport de classification :")
-            st.text(report)
-    st.button(label='Prédire la satisfaction client', type="primary", on_click=Predire_la_satisfaction_client,key=1)
-    
+            # report = classification_report(y_test, prediction)
+            # st.text("Rapport de classification :")
+            # st.text(report)
+        st.session_state.running = False
 
     # with cols_up2:   
-    #     feature9 = st.slider("iwservice", min_value=0, max_value=5, step=1)
-    #     feature10 = st.slider("da_time_convenient", min_value=0, max_value=5, step=1)
-    #     feature11 = st.slider("ease_online_booking", min_value=0, max_value=5, step=1)
-    #     feature12 = st.slider("gate_location", min_value=0, max_value=5, step=1)
-    #     feature13 = st.slider("food_and_drink", min_value=0, max_value=5, step=1)
-    #     feature14 = st.slider("online_boarding", min_value=0, max_value=5, step=1)
-    #     feature15 = st.slider("seat_comfort", min_value=0, max_value=5, step=1)
-    #     feature16 = st.slider("inflight_entertainmt", min_value=0, max_value=5, step=1)
-    #     feature17 = st.slider("on_board_service", min_value=0, max_value=5, step=1)
+        # feature15 = st.slider("seat_comfort", min_value=0, max_value=5, step=1)
+        # feature16 = st.slider("inflight_entertainmt", min_value=0, max_value=5, step=1)
+        # feature17 = st.slider("on_board_service", min_value=0, max_value=5, step=1)
     #     feature18 = st.slider("leg_room_service", min_value=0, max_value=5, step=1)
     #     feature19 = st.slider("baggage_handling", min_value=0, max_value=5, step=1)
     #     feature20 = st.slider("chk_service", min_value=0, max_value=5, step=1)
