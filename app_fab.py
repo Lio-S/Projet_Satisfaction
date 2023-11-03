@@ -44,16 +44,38 @@ with prevision_df_tab:
     st.write("Entrez les caractéristiques du client pour prédire sa satisfaction.")
 
     # Entrée des caractéristiques du client
-    online_boarding = st.slider("Online boarding", min_value=1, max_value=5)
-    in_flight_wifi = st.slider("In flight wifi service", min_value=0, max_value=5)
-    in_flight_entertainment = st.slider("In flight entertainment", min_value=0, max_value=5)
-    seat = st.slider("Seat confort", min_value=0, max_value=5)
-    on_board_service = st.slider("On board service", min_value=0, max_value=5)
-    leg_room = st.slider("Leg room service", min_value=0, max_value=5)
-    pass_class = st.selectbox("Passenger Class", ('Eco', 'Eco +', 'Business'))
-    type_of_travel = st.selectbox("Type of travel", ('Personal Travel', 'Business travel'))
-    type_of_travel = st.selectbox("Flight Distance", ('Short haul (<1500 km)', 'Medium haul (1500 km to 3000 km)', 'Long haul (>3000 km)'))
-
+    online_boarding = st.slider("Online boarding", min_value=0, max_value=5, value=3)
+    in_flight_wifi = st.slider("In flight wifi service", min_value=0, max_value=5, value=3)
+    in_flight_entertainment = st.slider("In flight entertainment", min_value=0, max_value=5, value=3)
+    seat = st.slider("Seat confort", min_value=0, max_value=5, value=3)
+    on_board_service = st.slider("On board service", min_value=0, max_value=5, value=3)
+    leg_room = st.slider("Leg room service", min_value=0, max_value=5, value=3)
+    pass_class_selec = st.selectbox("Passenger Class", ('Eco', 'Eco +', 'Business'))
+    if pass_class_selec == 'Eco' :
+        eco = 1
+        eco_plus = 0
+        business = 0
+    elif pass_class_selec == 'Eco+' :
+        eco = 0
+        eco_plus = 1
+        business = 0
+    elif pass_class_selec == 'Business' :
+        eco = 1
+        eco_plus = 0
+        business = 1
+    type_of_trav_selec = st.selectbox("Type of travel", ('Personal Travel', 'Business travel'))
+    if pass_class_selec == 'Personal Travel' :
+        type_of_travel = 0
+    elif pass_class_selec == 'Business travel' :
+        type_of_travel = 1
+    flight_d_selec = st.selectbox("Flight Distance", ('Short haul (<1500 km)', 'Medium haul (1500 km to 3000 km)', 'Long haul (>3000 km)'))
+    if flight_d_selec == 'Short haul (<1500 km)' :
+        flight_distance = 619
+    elif pass_class_selec == 'Medium haul (1500 km to 3000 km)' :
+        flight_distance = 2144
+    elif pass_class_selec == 'Long haul (>3000 km)' :
+        flight_distance = 3515
+        
 
 
 
