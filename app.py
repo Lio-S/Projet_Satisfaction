@@ -102,7 +102,7 @@ with prevision_df_tab:
     with cols_up5:
         food_and_drink = st.slider("Food and drink", min_value=0, max_value=5, step=1,key="food_and_drink", value=int(dataset_votes.food_and_drink.mean()))
     with cols_up6:
-        da_time_convenient = st.slider("Dep/Arr time convenient", min_value=0, max_value=5, step=1,key="da_time_convenient", value=int(dataset_votes.da_time_convenient.mean()))
+        da_time_convenient = st.slider("Dep/Arr time", min_value=0, max_value=5, step=1,key="da_time_convenient", value=int(dataset_votes.da_time_convenient.mean()))
     with cols_up7:
         iwservice = st.slider("Inflight wifi", min_value=0, max_value=5, step=1,key="iwservice", value=int(dataset_votes.iwservice.mean()))
     with cols_up8:
@@ -115,7 +115,7 @@ with prevision_df_tab:
     with cols_up10:
         seat_comfort = st.slider("Seat comfort", min_value=0, max_value=5, step=1,key="seat_comfort", value=int(dataset_votes.seat_comfort.mean()))
     with cols_up11:
-        inflight_entertainmt = st.slider("Inflight entertainment", min_value=0, max_value=5, step=1,key="inflight_entertainmt", value=int(dataset_votes.inflight_entertainmt.mean()))
+        inflight_entertainmt = st.slider("Entertainment", min_value=0, max_value=5, step=1,key="inflight_entertainmt", value=int(dataset_votes.inflight_entertainmt.mean()))
     with cols_up12:
         leg_room_service = st.slider("Leg room service", min_value=0, max_value=5, step=1,key="leg_room_service", value=int(dataset_votes.leg_room_service.mean()))
     with cols_up13:
