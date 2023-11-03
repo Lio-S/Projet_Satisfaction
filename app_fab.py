@@ -16,10 +16,10 @@ from preprocessing import preprocess_data
 # Chargement des données prétraitées
 train_data = pd.read_csv("data/Train_Data.csv")
 test_data = pd.read_csv("data/Test_Data.csv")
-X_train = train_data.drop("Satisfaction", axis=1)
-X_test = test_data.drop("Satisfaction", axis=1)
-y_train = train_data["Satisfaction"]
-y_test = test_data["Satisfaction"]
+X_train = train_data.drop("satisfaction", axis=1)
+X_test = test_data.drop("satisfaction", axis=1)
+y_train = train_data["satisfaction"]
+y_test = test_data["satisfaction"]
 
 
 prevision_df_tab, apprentissage_df_tab, dashboard_test_tab = st.tabs(['Prévision', 'Apprentissage', 'Test et ajout données'])
