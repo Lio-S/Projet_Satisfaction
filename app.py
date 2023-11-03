@@ -35,7 +35,7 @@ with prevision_df_tab:
         # # Entrée des caractéristiques du client
         max_value_delay = dataset['delay'].max()
         mean_value_delay = int(dataset['delay'].mean())
-        delay = st.slider("delay", min_value=0, max_value=max_value_delay, step=1, value=mean_value_delay, key="delay")
+        delay = st.slider("arrival and departure delay", min_value=0, max_value=max_value_delay, step=1, value=mean_value_delay, key="delay")
     with cols_up2:
         pass_class_selec = st.selectbox("Passenger Class", ('Eco', 'Eco +', 'Business'))
         if pass_class_selec == 'Eco' :
@@ -93,35 +93,35 @@ with prevision_df_tab:
     with cols_up2:
         inflight_service = st.slider("inflight_service", min_value=0, max_value=5, step=1,key="inflight_service", value=int(dataset_votes.inflight_service.mean()))
     with cols_up3:
-        chk_service = st.slider("chk_service", min_value=0, max_value=5, step=1,key="chk_service", value=int(dataset_votes.chk_service.mean()))
+        chk_service = st.slider("Checkin service", min_value=0, max_value=5, step=1,key="chk_service", value=int(dataset_votes.chk_service.mean()))
     with cols_up4:
-        gate_location = st.slider("gate_location", min_value=0, max_value=5, step=1,key="gate_location", value=int(dataset_votes.gate_location.mean()))
+        gate_location = st.slider("Gate location", min_value=0, max_value=5, step=1,key="gate_location", value=int(dataset_votes.gate_location.mean()))
 
     cols_up5, cols_up6,cols_up7, cols_up8,cols_up9 = st.columns([1,1,1,1,1])
 
     with cols_up5:
-        food_and_drink = st.slider("food_and_drink", min_value=0, max_value=5, step=1,key="food_and_drink", value=int(dataset_votes.food_and_drink.mean()))
+        food_and_drink = st.slider("Food and drink", min_value=0, max_value=5, step=1,key="food_and_drink", value=int(dataset_votes.food_and_drink.mean()))
     with cols_up6:
-        da_time_convenient = st.slider("da_time_convenient", min_value=0, max_value=5, step=1,key="da_time_convenient", value=int(dataset_votes.da_time_convenient.mean()))
+        da_time_convenient = st.slider("Dep/Arr time", min_value=0, max_value=5, step=1,key="da_time_convenient", value=int(dataset_votes.da_time_convenient.mean()))
     with cols_up7:
-        iwservice = st.slider("iwservice", min_value=0, max_value=5, step=1,key="iwservice", value=int(dataset_votes.iwservice.mean()))
+        iwservice = st.slider("Inflight wifi", min_value=0, max_value=5, step=1,key="iwservice", value=int(dataset_votes.iwservice.mean()))
     with cols_up8:
-        ease_online_booking = st.slider("ease_online_booking", min_value=0, max_value=5, step=1,key="ease_online_booking", value=int(dataset_votes.ease_online_booking.mean()))    
+        ease_online_booking = st.slider("Ease online booking", min_value=0, max_value=5, step=1,key="ease_online_booking", value=int(dataset_votes.ease_online_booking.mean()))    
     with cols_up9:
-        online_boarding = st.slider("online_boarding", min_value=0, max_value=5, step=1,key="online_boarding", value=int(dataset_votes.online_boarding.mean())) 
+        online_boarding = st.slider("Online boarding", min_value=0, max_value=5, step=1,key="online_boarding", value=int(dataset_votes.online_boarding.mean())) 
 
     cols_up10, cols_up11,cols_up12, cols_up13,cols_up14 = st.columns([1,1,1,1,1])
 
     with cols_up10:
-        seat_comfort = st.slider("seat_comfort", min_value=0, max_value=5, step=1,key="seat_comfort", value=int(dataset_votes.seat_comfort.mean()))
+        seat_comfort = st.slider("Seat comfort", min_value=0, max_value=5, step=1,key="seat_comfort", value=int(dataset_votes.seat_comfort.mean()))
     with cols_up11:
-        inflight_entertainmt = st.slider("inflight_entertainmt", min_value=0, max_value=5, step=1,key="inflight_entertainmt", value=int(dataset_votes.inflight_entertainmt.mean()))
+        inflight_entertainmt = st.slider("Entertainment", min_value=0, max_value=5, step=1,key="inflight_entertainmt", value=int(dataset_votes.inflight_entertainmt.mean()))
     with cols_up12:
-        leg_room_service = st.slider("leg_room_service", min_value=0, max_value=5, step=1,key="leg_room_service", value=int(dataset_votes.leg_room_service.mean()))
+        leg_room_service = st.slider("Leg room service", min_value=0, max_value=5, step=1,key="leg_room_service", value=int(dataset_votes.leg_room_service.mean()))
     with cols_up13:
-        on_board_service = st.slider("on_board_service", min_value=0, max_value=5, step=1,key="on_board_service", value=int(dataset_votes.on_board_service.mean()))    
+        on_board_service = st.slider("On-board service", min_value=0, max_value=5, step=1,key="on_board_service", value=int(dataset_votes.on_board_service.mean()))    
     with cols_up14:
-        baggage_handling = st.slider("baggage_handling", min_value=0, max_value=5, step=1,key="baggage_handling", value=int(dataset_votes.baggage_handling.mean()))    
+        baggage_handling = st.slider("Baggage handling", min_value=0, max_value=5, step=1,key="baggage_handling", value=int(dataset_votes.baggage_handling.mean()))    
     
     # Prédire la satisfaction client
     result_prediction_btn = st.session_state.result_prediction_btn
