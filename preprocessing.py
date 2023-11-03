@@ -33,6 +33,8 @@ def preprocess_data(data, test_data, train_data):
     data['Satisfaction'] = np.where(data['Satisfaction']=='satisfied',1,0)
     data = data.rename(columns={'Satisfaction': 'satisfaction'})
 
+try:
+    # Convert 'Class' to binary
     # Insert new columns based on 'Class'
     data.insert(0, 'business', np.where(data['Class']=='Business',1,0))
     data.insert(0, 'eco_plus', np.where(data['Class']=='Eco Plus',1,0))
