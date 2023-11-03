@@ -141,10 +141,10 @@ with prevision_df_tab:
             st.title("Rapport de prévision :")
             st.write("Extrait de dataset_features")
             X = pd.DataFrame([
-                delay, eco, eco_plus, business, gender, custumer_type, ToT, flight_distance, dataset_votes_cleanliness, dataset_votes_inflight_service,
-                dataset_votes_chk_service, dataset_votes_gate_location, dataset_votes_food_and_drink, dataset_votes_da_time_convenient, dataset_votes_iwservice,
-                dataset_votes_ease_online_booking, dataset_votes_online_boarding, dataset_votes_seat_comfort, dataset_votes_inflight_entertainmt,
-                dataset_votes_leg_room_service, dataset_votes_on_board_service, dataset_votes_baggage_handling
+                delay, eco, eco_plus, business, gender, custumer_type, ToT, flight_distance, cleanliness, inflight_service,
+                chk_service, gate_location, food_and_drink, da_time_convenient, iwservice,
+                ease_online_booking, online_boarding, seat_comfort, inflight_entertainmt,
+                leg_room_service, on_board_service, baggage_handling
             ])
             # ], columns=[
             #     "delay", "eco", "eco_plus", "business", "gender", "customer_type", "ToT",
@@ -160,24 +160,14 @@ with prevision_df_tab:
             prediction = clf_client.predict(X)
             predict_proba = clf_client.predict_proba(X)[0][1]
             efficacite_modele = clf_client.score(X_test, y_test)
-            st.write("Satisfaction prediction :", prediction)
-            st.write("Satisfaction predict_proba :", predict_proba)
-            st.write("score du modèle :", efficacite_modele)
-            # if prediction_mean > 0.5:
-            #     st.write("Satisfaction client : Positive")
-            #     st.success('Positif !', icon='✅')
-            # else:
-            #     st.write("Satisfaction client : Negative")
-            #     st.success('Negatif!', icon='🚨')
-            # # Afficher la prédiction
-            # st.write("La satisfaction client prédite est :", prediction)
+            st.write(f"Probabilité de Satisfaction : {predict_proba:.2f}")
+            st.write(f"Score du modèle : {efficacite_modele:.2f}")
+            # Afficher la prédiction
+            if prediction > 0.5:
+                st.success('Satisfaction client : Positive !', icon='✅')
+            else:
+                st.success('La satisfaction client prédite est : Negative !', icon='🚨')
             # Affichage de la précision du modèle
-            # accuracy = accuracy_score(y_test, prediction)
-            # st.write(f"Précision du modèle : {accuracy:.2f}")
-            # Affichage du rapport de classification
-            # report = classification_report(y_test, prediction)
-            # st.text("Rapport de classification :")
-            # st.text(report)
         st.session_state.running = False
 
     # with cols_up2:   
