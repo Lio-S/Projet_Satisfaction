@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
 from components.utils_streamlit import run_disable, enable
+import json
 from preprocessing import preprocess_data
 
 # ----------------------- session state declaration -----------------------
@@ -84,6 +85,8 @@ with prevision_df_tab:
     # Entraîner le modèle
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     clf_client.fit(X_train, y_train)
+    getfeature_importances = clf_client.feature_importances_(X_train)
+    st.write("getfeature_importances :", {getfeature_importances})
     st.header("Voting :")
 
     cols_up1, cols_up2,cols_up3, cols_up4 = st.columns([1,1,1,1])
